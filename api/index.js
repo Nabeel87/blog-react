@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 
 
 dotenv.config();
+app.use(express.json());
 
 const connect = async () => {
     try {
