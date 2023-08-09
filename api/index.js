@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const postRoute = require("./routes/posts");
+const categoryRoute = require("./routes/category");
 
 dotenv.config();
 app.use(express.json());
@@ -26,6 +27,7 @@ mongoose.connection.on("disconnected", ()=>{
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/categories", categoryRoute);
 
 app.listen("5000", ()=>{
     connect();
