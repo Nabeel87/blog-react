@@ -3,6 +3,7 @@ const app =express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
 
 
 dotenv.config();
@@ -23,6 +24,8 @@ mongoose.connection.on("disconnected", ()=>{
 
 
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+
 
 app.listen("5000", ()=>{
     connect();
