@@ -30,4 +30,4 @@ app.use("/api/posts", postRoute);
 app.listen("5000", ()=>{
     connect();
     console.log("backend is running");
-})
+});
