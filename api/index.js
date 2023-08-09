@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/category");
+const multer = require("multer");
 
 dotenv.config();
 app.use(express.json());
