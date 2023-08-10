@@ -1,5 +1,5 @@
 const express = require("express");
-const app =express();
+const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
@@ -14,24 +14,24 @@ app.use(express.json());
 // app.use("/images", express.static(path.join(__dirname, "/images")));
 
 const connect = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URL);
-        console.log("Connected to MongoDB")
-      } catch (error) {
-        throw error;
-      }
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("Connected to MongoDB")
+  } catch (error) {
+    throw error;
+  }
 };
 
-mongoose.connection.on("disconnected", ()=>{
+mongoose.connection.on("disconnected", () => {
   console.log("mongoDB disconnected...")
 })
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "./images");
   },
   filename: (req, file, cb) => {
-    cb(null, "hello.jpg");
+    cb(null, req.body.name);
   },
 });
 
@@ -45,7 +45,7 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
 
-app.listen("5000", ()=>{
-    connect();
-    console.log("backend is running");
+app.listen("5000", () => {
+  connect();
+  console.log("backend is running");
 });
