@@ -1,7 +1,22 @@
 
+import { useLocation } from "react-router-dom";
 import "./singlePost.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function SinglePost() {
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+
+
+  useEffect(()=>{
+    const getpost = async()=>{
+      const res = await axios.get("/posts/" + path);
+      console.log(res.data);
+    };
+    getpost();
+  },[path]);
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
