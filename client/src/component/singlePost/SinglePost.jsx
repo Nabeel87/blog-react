@@ -1,14 +1,15 @@
 
 import { Link, useLocation } from "react-router-dom";
 import "./singlePost.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Context } from "../../context/Context";
 
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPosts] = useState({});
-
+  const { user } = useContext(Context);
   const PF = "http://localhost:5000/images/";
 
   useEffect(() => {
@@ -31,10 +32,12 @@ export default function SinglePost() {
         )}
         <h1 className="singlePostTitle">
           {post.title}
-          <div className="singlePostEdit">
-            <i className="singlePostIcon far fa-edit"></i>
-            <i className="singlePostIcon far fa-trash-alt"></i>
-          </div>
+          {post.username === user.username &&
+            <div className="singlePostEdit">
+              <i className="singlePostIcon far fa-edit"></i>
+              <i className="singlePostIcon far fa-trash-alt"></i>
+            </div>
+          }
         </h1>
         <div className="singlePostInfo">
           <span>
